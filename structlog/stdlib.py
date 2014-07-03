@@ -94,6 +94,14 @@ class BoundLogger(BoundLoggerBase):
         """
         return self._proxy_to_logger('critical', event, **kw)
 
+    def log(self, level, event=None, **kw):
+        """
+        Process event and call ``Logger.log()`` with the result and given log
+        level.
+        """
+        kw['level'] = level
+        return self._proxy_to_logger('log', event, **kw)
+
 
 class LoggerFactory(object):
     """
